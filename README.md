@@ -1,14 +1,17 @@
 # Pastaruga Ninja
 
 ## Descrição
-
-Pastaruga Ninja é uma aplicação console desenvolvida em C# (.NET Framework 3.5) para automatizar a criação de pastas em um diretório especificado pelo usuário. O projeto também implementa um sistema de log para registrar todas as operações realizadas, facilitando o acompanhamento e a identificação de possíveis erros.
+Pastaruga Ninja é uma aplicação de console escrita em C# (.NET Framework 3.5) para automatizar operações simples de pastas — principalmente criação e remoção — e registrar todas as ações em arquivos de log para auditoria e diagnóstico.
 
 ## Funcionalidades
+- Criar uma pasta em um diretório especificado.
+- Excluir uma pasta de um diretório especificado.
+- Registro (log) detalhado de operações e erros em arquivo.
+- Validação básica dos argumentos passados pela linha de comando.
 
-- Criação automática de uma nova pasta em um diretório existente.
-- Registro detalhado das operações e erros em arquivos de log.
-- Validação dos argumentos fornecidos na linha de comando.
+## Requisitos
+- Windows com .NET Framework 3.5 instalado.
+- Visual Studio 2022 (opcional, para abrir/compilar o código-fonte).
 
 ## Download
 
@@ -16,36 +19,48 @@ Você pode baixar o executável compilado clicando no link abaixo:
 
 [Download do Pastaruga Ninja](https://github.com/mayconwisley//PastarugaNinja/raw/refs/heads/master/exe/PastarugaNinja.exe)
 
-## Como usar
+## Como executar
+Abra o Prompt de Comando e execute o binário `PastarugaNinja.exe` com os argumentos apropriados.
 
-1. **Pré-requisitos**  
-   - .NET Framework 3.5 instalado.
-   - Visual Studio 2022 ou compatível.
+Comandos disponíveis:
+- Criar pasta:
+  - `PastarugaNinja.exe create <caminho> <nomeDaPasta>`
+  - Atalhos aceitáveis: `cri`, `c`
+  - Exemplo:
+    - `PastarugaNinja.exe create "C:\MeusDocumentos" "NovaPasta"`
+- Excluir pasta:
+  - `PastarugaNinja.exe delete <caminhoDaPasta>`
+  - Atalhos aceitáveis: `del`, `d`
+  - Exemplo:
+    - `PastarugaNinja.exe delete "C:\MeusDocumentos\NovaPasta"`
 
-2. **Execução**  
-   Execute o programa via linha de comando, fornecendo dois argumentos:
-   - O caminho do diretório onde a nova pasta será criada.
-   - O nome da nova pasta.
+Opções de ajuda:
+- `PastarugaNinja.exe help`
+- `PastarugaNinja.exe -h` ou `--help`
 
-   **Exemplo:**
-   - PastarugaNinja.exe "C:\MeusDocumentos" "NovaPasta"
-  
-3. **Logs**  
-Os logs são gerados na mesma pasta do executável, com nome no formato: 
+Observações:
+- Os exemplos acima assumem que o executável está no diretório atual ou presente no PATH.
+- Se o diretório base informado não existir, a operação de criação não será executada e um log será gerado.
+
+## Logs
+Os logs são gravados na mesma pasta do executável com o padrão de nome:
 `yyyy-MM-dd HHh - Log Pastaruga Ninja.log`
 
-## Estrutura do Projeto
+Cada entrada de log inclui timestamp e mensagem para facilitar diagnóstico.
 
-- `Program.cs`: Ponto de entrada da aplicação. Valida os argumentos e chama os métodos principais.
-- `CriarPasta.cs`: Responsável pela criação da nova pasta.
-- `CriarLog.cs`: Gerencia a criação e escrita dos logs.
+## Estrutura do projeto
+- `Program.cs` — ponto de entrada e parse dos argumentos/ comandos.
+- `CriarPasta.cs` — lógica de criação de diretórios e validações.
+- `CriarLog.cs` — responsável pela escrita segura dos logs no disco.
+- `LICENSE.txt` — licença do projeto (MIT).
 
-## Observações
+## Boas práticas e recomendações
+- Execute com permissões suficientes ao criar/excluir pastas em locais protegidos (ex.: `Program Files`).
+- Faça backup ou verifique o conteúdo antes de executar exclusões automatizadas.
+- Ao evoluir o projeto, considere migrar para uma versão mais recente do .NET e adotar um framework de logging (ex.: Serilog) para maior flexibilidade.
 
-- Se o diretório informado não existir, nenhuma pasta será criada.
-- Caso ocorram erros, eles serão registrados no arquivo de log correspondente.
-- O projeto foi desenvolvido para fins didáticos e pode ser expandido conforme a necessidade.
+## Contribuição
+Contribuições são bem-vindas. Abra uma issue para discutir mudanças ou envie um pull request com descrições claras das alterações.
 
 ## Licença
-
-Este projeto está sob a licença MIT.
+Este projeto está licenciado sob a licença MIT — consulte `LICENSE.txt` para mais detalhes.
