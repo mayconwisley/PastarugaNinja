@@ -33,7 +33,23 @@ namespace PastarugaNinja
 							ShowUsage();
 							Environment.Exit(2);
 						}
-						ExcluirPasta.Excluir(args[1]);
+
+						if (args.Length == 3 && args[1] == "a")
+						{
+							ExcluirPasta.Excluir(args[2], true);
+							break;
+						}
+
+						if (args.Length == 3 && args[1] != "a")
+						{
+							CriarLog.Log($"Argumento: '{args[1]}' inválido para o comando de exclusão de arquivos");
+							ShowUsage();
+							Environment.Exit(2);
+						}
+
+						if (args.Length == 2)
+							ExcluirPasta.Excluir(args[1]);
+
 						break;
 
 					case "cri":
@@ -65,9 +81,9 @@ namespace PastarugaNinja
 		private static void ShowUsage()
 		{
 			Console.WriteLine("Pastaruga Ninja - Usage:");
-			Console.WriteLine("  create|cri|c <path> <directoryName>    Create a directory");
-			Console.WriteLine("  delete|del|d <path>                    Delete a directory");
-			Console.WriteLine("  help                                    Show this help");
+			Console.WriteLine("  create|cri|c <path> <directoryName>    Criar um diretório");
+			Console.WriteLine("  delete|del|d [a] <path>                Deletar um diretório (use 'a' para excluir os arquivos juntos)");
+			Console.WriteLine("  help                                   Mostrar esta ajusta");
 		}
 	}
 }

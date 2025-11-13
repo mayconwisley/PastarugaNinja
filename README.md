@@ -33,6 +33,11 @@ Comandos disponíveis:
   - Atalhos aceitáveis: `del`, `d`
   - Exemplo:
     - `PastarugaNinja.exe delete "C:\MeusDocumentos\NovaPasta"`
+- Excluir pasta e arquivos:
+  - `PastarugaNinja.exe delete a <caminhoDaPasta>`
+  - Atalhos aceitáveis: `del`, `d`
+  - Exemplo:
+    - `PastarugaNinja.exe delete a "C:\MeusDocumentos\NovaPasta"`    
 
 Opções de ajuda:
 - `PastarugaNinja.exe help`
