@@ -26,7 +26,15 @@ namespace PastarugaNinja
                     return false;
                 }
 
-                Directory.Move(pathOrigin, pathDestination);
+                var pathFinalDestination = Path.Combine(pathDestination, Path.GetFileName(pathOrigin));
+                if (Directory.Exists(pathFinalDestination))
+                {
+                    CriarLog.Log($"A pasta já existe no destino: {pathFinalDestination}");
+                    return false;
+                }
+
+
+                Directory.Move(pathOrigin, pathFinalDestination);
                 CriarLog.Log($"Diretório movido");
                 return true;
             }
