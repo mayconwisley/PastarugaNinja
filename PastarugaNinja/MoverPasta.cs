@@ -33,9 +33,8 @@ namespace PastarugaNinja
                     return false;
                 }
 
-
                 Directory.Move(pathOrigin, pathFinalDestination);
-                CriarLog.Log($"Diretório movido");
+                CriarLog.Log($"Diretório movido com sucesso");
                 return true;
             }
             catch (UnauthorizedAccessException auEx)

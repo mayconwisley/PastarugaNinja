@@ -75,6 +75,23 @@ namespace PastarugaNinja
                         }
                         MoverPasta.Mover(args[1], args[2]);
                         break;
+                    case "cop":
+                    case "copy":
+                        if (args.Length < 4)
+                        {
+                            CriarLog.Log("Caminhos estão ausente para serem copiados");
+                            ShowUsage();
+                            Environment.Exit(2);
+                        }
+
+                        if (args[1] == "x")
+                        {
+                            CopiarArquivo.Copiar(args[2], args[3], true);
+                            break;
+                        }
+
+                        CopiarArquivo.Copiar(args[1], args[2]);
+                        break;
 
                     default:
                         CriarLog.Log($"Comando desconhecido: {args[0]}");
@@ -95,6 +112,7 @@ namespace PastarugaNinja
             Console.WriteLine("Pastaruga Ninja - Usage:");
             Console.WriteLine("  create|cri|c <path> <directoryName>    Criar um diretório");
             Console.WriteLine("  move|mov|m <pathOrgin> <pathDestination>    Mover um diretório");
+            Console.WriteLine("  copy|cop [x] <pathFileOrgin> <pathFileDestination>    Copiar arquivos para outro destino (use 'x' para recortar o arquivo)");
             Console.WriteLine("  delete|del|d [a] <path>                Deletar um diretório (use 'a' para excluir os arquivos juntos)");
             Console.WriteLine("  help                                   Mostrar esta ajusta");
         }

@@ -84,6 +84,7 @@
     <Compile Include="CriarLog.cs" />
     <Compile Include="CriarPasta.cs" />
     <Compile Include="ExcluirPasta.cs" />
+    <Compile Include="CopiarArquivo.cs" />
     <Compile Include="MoverPasta.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
