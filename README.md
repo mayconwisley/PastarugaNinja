@@ -28,6 +28,11 @@ Comandos disponíveis:
   - Atalhos aceitáveis: `cri`, `c`
   - Exemplo:
     - `PastarugaNinja.exe create "C:\MeusDocumentos" "NovaPasta"`
+- Mover pasta:
+  - `PastarugaNinja.exe move <caminhoOrigem> <caminhoDestino>`
+  - Atalhos aceitáveis: `mov`, `m`
+  - Exemplo:
+    - `PastarugaNinja.exe move "C:\MeusDocumentosOrigem" "C:\MeusDocumentosDestino"`
 - Excluir pasta:
   - `PastarugaNinja.exe delete <caminhoDaPasta>`
   - Atalhos aceitáveis: `del`, `d`
@@ -38,6 +43,16 @@ Comandos disponíveis:
   - Atalhos aceitáveis: `del`, `d`
   - Exemplo:
     - `PastarugaNinja.exe delete a "C:\MeusDocumentos\NovaPasta"`    
+- Copiar arquivos:
+  - `PastarugaNinja.exe copy <caminhoOrigem> <caminhoDestino>`
+  - Atalhos aceitáveis: `cop`
+  - Exemplo:
+    - `PastarugaNinja.exe move "C:\MeusDocumentosOrigem" "C:\MeusDocumentosDestino"`
+- Recortar arquivos:
+  - `PastarugaNinja.exe copy x <caminhoOrigem> <caminhoDestino>`
+  - Atalhos aceitáveis: `cop`
+  - Exemplo:
+    - `PastarugaNinja.exe copy x "C:\MeusDocumentosOrigem" "C:\MeusDocumentosDestino"`    
 
 Opções de ajuda:
 - `PastarugaNinja.exe help`
