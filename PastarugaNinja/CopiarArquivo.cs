@@ -1,57 +1,56 @@
 ﻿using System;
 using System.IO;
 
-namespace PastarugaNinja
+namespace PastarugaNinja;
+
+public static class CopiarArquivo
 {
-    public static class CopiarArquivo
+    public static bool Copiar(string pathFileOrigin, string pathFileDestination, bool isCut = false)
     {
-        public static bool Copiar(string pathFileOrigin, string pathFileDestination, bool isCut = false)
+        if (string.IsNullOrEmpty(pathFileOrigin))
         {
-            if (string.IsNullOrEmpty(pathFileOrigin))
+            CriarLog.Log("O caminho de origem inválido.");
+            return false;
+        }
+        if (string.IsNullOrEmpty(pathFileDestination))
+        {
+            CriarLog.Log("O caminho de destino inválido.");
+            return false;
+        }
+
+        try
+        {
+            if (!Directory.Exists(pathFileOrigin) || !Directory.Exists(pathFileDestination))
             {
-                CriarLog.Log("O caminho de origem inválido.");
+                CriarLog.Log($"O caminho de origem ou destino não existe: {pathFileOrigin}{pathFileDestination}");
                 return false;
             }
-            if (string.IsNullOrEmpty(pathFileDestination))
-            {
-                CriarLog.Log("O caminho de destino inválido.");
-                return false;
-            }
 
-            try
+            foreach (var file in Directory.GetFiles(pathFileOrigin))
             {
-                if (!Directory.Exists(pathFileOrigin) || !Directory.Exists(pathFileDestination))
+                var destinationFile = Path.Combine(pathFileDestination, Path.GetFileName(file));
+
+                if (isCut)
                 {
-                    CriarLog.Log($"O caminho de origem ou destino não existe: {pathFileOrigin}{pathFileDestination}");
-                    return false;
+                    File.Move(file, destinationFile);
                 }
-
-                foreach (var file in Directory.GetFiles(pathFileOrigin))
+                else
                 {
-                    var destinationFile = Path.Combine(pathFileDestination, Path.GetFileName(file));
-
-                    if (isCut)
-                    {
-                        File.Move(file, destinationFile);
-                    }
-                    else
-                    {
-                        File.Copy(file, destinationFile, true);
-                    }
+                    File.Copy(file, destinationFile, true);
                 }
-                CriarLog.Log($"Arquivos Copiados com sucesso");
-                return true;
             }
-            catch (UnauthorizedAccessException auEx)
-            {
-                CriarLog.Log($"Acesso negado ao mover diretório: {auEx.Message}");
-                throw;
-            }
-            catch (Exception ex)
-            {
-                CriarLog.Log("Erro inesperado ao mover o diretório: " + ex.Message);
-                throw;
-            }
+            CriarLog.Log($"Arquivos Copiados com sucesso");
+            return true;
+        }
+        catch (UnauthorizedAccessException auEx)
+        {
+            CriarLog.Log($"Acesso negado ao mover diretório: {auEx.Message}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            CriarLog.Log("Erro inesperado ao mover o diretório: " + ex.Message);
+            throw;
         }
     }
 }
